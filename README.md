@@ -11,6 +11,7 @@ This testing project from PT. Olsera Pratama Indonesia at [Olsera.com](https://o
   - [List of API Routes](#list-of-api-routes)
     - [Pajak](#pajak)
     - [Item](#item)
+  - [About me](#about-me)
   - [License](#license)
 
 ## Project Dependencies
@@ -32,7 +33,7 @@ This testing project from PT. Olsera Pratama Indonesia at [Olsera.com](https://o
 
 ### Pajak
 
-* Get Pajak
+- Get Pajak
 
 method: `GET`
 url: `/pajak`
@@ -53,7 +54,7 @@ response:
 }
 ```
 
-* Create Pajak
+- Create Pajak
 
     method: `POST`
     url: `/pajak`
@@ -80,7 +81,7 @@ response:
     }
     ```
 
-* Detail Pajak
+- Detail Pajak
 
     method: `GET`
     url: `/pajak/{id}`
@@ -100,7 +101,7 @@ response:
     }
     ```
 
-* Update Pajak
+- Update Pajak
 
     method: `PUT`
     url: `/pajak/{id}`
@@ -128,7 +129,7 @@ response:
     }
     ```
 
-* Delete Pajak
+- Delete Pajak
 
     method: `DELETE`
     url: `/pajak/{id}`
@@ -144,7 +145,7 @@ response:
 
 ### Item
 
-* Get Item with Pajak
+- Get Item with Pajak
 
 method: `GET`
 url: `/item`
@@ -184,7 +185,7 @@ response:
 }
 ```
 
-* Create Item with Pajak
+- Create Item with Pajak
 
     method: `POST`
     url: `/item`
@@ -230,7 +231,7 @@ response:
     }
     ```
 
-* Detail Item with Pajak
+- Detail Item with Pajak
 
     method: `GET`
     url: `/item/{id}`
@@ -268,7 +269,7 @@ response:
     }
     ```
 
-* Update Item with Pajak
+- Update Item with Pajak
 
     method: `PUT`
     url: `/item/{id}`
@@ -315,7 +316,7 @@ response:
     }
     ```
 
-* Delete Item
+- Delete Item
 
     method: `DELETE`
     url: `/item/{id}`
@@ -327,6 +328,18 @@ response:
         "data": null
     }
     ```
+
+## About me
+
+Hello there 👋🏻, my name is [Afif Abdillah Jusuf](https://github.com/bungambohlah) and I'm a software engineer.
+
+I'm currently working as a [Full Stack Developer](https://www.linkedin.com/in/afifjusuf/).
+
+Graduated from [Politeknik Elektronika Negeri Surabaya](https://pens.ac.id) as Associate Degree in Informatics Engineering.
+
+Nice to meet you.
+
+Visit my personal site at [afif.dev](https://afif.dev)
 
 ## License
 
