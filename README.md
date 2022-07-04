@@ -2,6 +2,32 @@
 
 This testing project from PT. Olsera Pratama Indonesia at [Olsera.com](https://olsera.com)
 
+## Table of Contents
+
+- [OLS Laravel](#ols-laravel)
+  - [Table of Contents](#table-of-contents)
+  - [Project Dependencies](#project-dependencies)
+  - [Setup project](#setup-project)
+  - [List of API Routes](#list-of-api-routes)
+    - [Pajak](#pajak)
+    - [Item](#item)
+  - [License](#license)
+
+## Project Dependencies
+
+1. PHP min 7.4 for laravel 9.x
+2. MySQL
+3. Composer
+4. PhpMyAdmin (optional)
+
+## Setup project
+
+1. Clone the repository
+2. Create database with name `ols-laravel` via mysql CLI or phpmyadmin
+3. run `composer install` to install composer dependencies
+4. run `php artisan migrate:fresh --seed` to execute migration and seed
+5. run `php artisan serve` to run laravel server
+
 ## List of API Routes
 
 ### Pajak
