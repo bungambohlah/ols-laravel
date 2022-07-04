@@ -1,63 +1,306 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# OLS Laravel
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This testing project from PT. Olsera Pratama Indonesia at [Olsera.com](https://olsera.com)
 
-## About Laravel
+## List of API Routes
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Pajak
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* Get Pajak
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+method: `GET`
+url: `/pajak`
+params: `none`
+response:
 
-## Learning Laravel
+```json
+{
+    "data": [
+        {
+            "id": 1,
+            "nama": "pph",
+            "rate": 0.05,
+            "created_at": "2022-07-04T12:15:58.000000Z",
+            "updated_at": "2022-07-04T12:15:58.000000Z"
+        },
+    ]
+}
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* Create Pajak
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    method: `POST`
+    url: `/pajak`
+    body:
 
-## Laravel Sponsors
+    ```json
+    {
+        "nama": "Pajak" (required),
+        "rate": 0.05 (required | numerics)
+    }
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    response:
 
-### Premium Partners
+    ```json
+    {
+        "data": {
+            "nama": "Pajak E",
+            "rate": "0.01",
+            "updated_at": "2022-07-04T14:31:10.000000Z",
+            "created_at": "2022-07-04T14:31:10.000000Z",
+            "id": 5
+        }
+    }
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+* Detail Pajak
 
-## Contributing
+    method: `GET`
+    url: `/pajak/{id}`
+    params: `id:integer`
+    response:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    ```json
+    {
+        "data": {
+            "id": 3,
+            "nama": "Pajak C",
+            "rate": 0.03,
+            "created_at": "2022-07-04T12:48:15.000000Z",
+            "updated_at": "2022-07-04T12:48:15.000000Z"
+        }
 
-## Code of Conduct
+    }
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+* Update Pajak
 
-## Security Vulnerabilities
+    method: `PUT`
+    url: `/pajak/{id}`
+    params: `id:integer`
+    body:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    ```json
+    {
+        "nama": "Pajak", (required)
+        "rate": 0.05 (required | numerics)
+    }
+    ```
+
+    response:
+
+    ```json
+    {
+        "data": {
+            "id": 5,
+            "nama": "Pajak D",
+            "rate": "0.02",
+            "created_at": "2022-07-04T14:31:10.000000Z",
+            "updated_at": "2022-07-04T14:32:26.000000Z"
+        }
+    }
+    ```
+
+* Delete Pajak
+
+    method: `DELETE`
+    url: `/pajak/{id}`
+    params: `id:integer`
+
+    response:
+
+    ```json
+    {
+        "data": null
+    }
+    ```
+
+### Item
+
+* Get Item with Pajak
+
+method: `GET`
+url: `/item`
+params: `none`
+response:
+
+```json
+{
+    "data": [
+        {
+            "id": 1,
+            "nama": "baju batik A",
+            "created_at": "2022-07-04T12:15:58.000000Z",
+            "updated_at": "2022-07-04T14:09:09.000000Z",
+            "pajak": [
+                {
+                    "id": 1,
+                    "nama": "pph",
+                    "rate": 0.05,
+                    "pajak": {
+                        "item_id": 1,
+                        "pajak_id": 1
+                    }
+                },
+                {
+                    "id": 3,
+                    "nama": "Pajak C",
+                    "rate": 0.03,
+                    "pajak": {
+                        "item_id": 1,
+                        "pajak_id": 3
+                    }
+                }
+            ]
+        }
+    ]
+}
+```
+
+* Create Item with Pajak
+
+    method: `POST`
+    url: `/item`
+    body:
+
+    ```json
+    {
+        "nama": "Item", (required)
+        "pajak_id": [1, 2] (required | array | min:2)
+    }
+    ```
+
+    response:
+
+    ```json
+    {
+        "data": {
+            "nama": "Item",
+            "updated_at": "2022-07-04T14:34:45.000000Z",
+            "created_at": "2022-07-04T14:34:45.000000Z",
+            "id": 7,
+            "pajak": [
+                {
+                    "id": 1,
+                    "nama": "pph",
+                    "rate": 0.05,
+                    "pajak": {
+                        "item_id": 7,
+                        "pajak_id": 1
+                    }
+                },
+                {
+                    "id": 2,
+                    "nama": "pajak toko",
+                    "rate": 0.1,
+                    "pajak": {
+                        "item_id": 7,
+                        "pajak_id": 2
+                    }
+                }
+            ]
+        }
+    }
+    ```
+
+* Detail Item with Pajak
+
+    method: `GET`
+    url: `/item/{id}`
+    params: `id:integer`
+    response:
+
+    ```json
+    {
+        "data": {
+            "id": 1,
+            "nama": "baju batik A",
+            "created_at": "2022-07-04T12:15:58.000000Z",
+            "updated_at": "2022-07-04T14:09:09.000000Z",
+            "pajak": [
+                {
+                    "id": 1,
+                    "nama": "pph",
+                    "rate": 0.05,
+                    "pajak": {
+                        "item_id": 1,
+                        "pajak_id": 1
+                    }
+                },
+                {
+                    "id": 3,
+                    "nama": "Pajak C",
+                    "rate": 0.03,
+                    "pajak": {
+                        "item_id": 1,
+                        "pajak_id": 3
+                    }
+                }
+            ]
+        }
+    }
+    ```
+
+* Update Item with Pajak
+
+    method: `PUT`
+    url: `/item/{id}`
+    params: `id:integer`
+    body:
+
+    ```json
+    {
+        "nama": "Item", (required)
+        "pajak_id": [1, 2] (required | array | min:2)
+    }
+    ```
+
+    response:
+
+    ```json
+    {
+        "data": {
+            "id": 1,
+            "nama": "baju batik A",
+            "created_at": "2022-07-04T12:15:58.000000Z",
+            "updated_at": "2022-07-04T14:09:09.000000Z",
+            "pajak": [
+                {
+                    "id": 1,
+                    "nama": "pph",
+                    "rate": 0.05,
+                    "pajak": {
+                        "item_id": 1,
+                        "pajak_id": 1
+                    }
+                },
+                {
+                    "id": 3,
+                    "nama": "Pajak C",
+                    "rate": 0.03,
+                    "pajak": {
+                        "item_id": 1,
+                        "pajak_id": 3
+                    }
+                }
+            ]
+        }
+    }
+    ```
+
+* Delete Item
+
+    method: `DELETE`
+    url: `/item/{id}`
+    params: `id:integer`
+    response:
+
+    ```json
+    {
+        "data": null
+    }
+    ```
 
 ## License
 
