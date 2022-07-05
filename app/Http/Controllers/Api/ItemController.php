@@ -17,7 +17,16 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $item = Item::latest()->with('pajak')->get();
+        $item = Item::latest()
+        ->select('item.*',
+            Item::raw('CONCAT(\'[\', GROUP_CONCAT(JSON_OBJECT("id", pajak.id, "nama", pajak.nama, "rate", pajak.rate)),\']\') AS pajak'))
+        ->leftJoin('pajakitem', 'pajakitem.item_id', '=', 'item.id')
+        ->leftJoin('pajak', 'pajak.id', '=', 'pajakitem.pajak_id')
+        ->groupBy('item.id')
+        ->get();
+        $item->each(function ($item) {
+            $item->pajak = json_decode($item->pajak);
+        });
 
         return new GetResource($item);
     }
@@ -50,9 +59,18 @@ class ItemController extends Controller
             'updated_at' => now()
         ]);
         $item->pajak()->attach($request->pajak_id);
-        $item->load('pajak');
 
-        return new GetResource($item);
+        $returnItem = Item::select('item.*',
+            Item::raw('CONCAT(\'[\', GROUP_CONCAT(JSON_OBJECT("id", pajak.id, "nama", pajak.nama, "rate", pajak.rate)),\']\') AS pajak'))
+        ->leftJoin('pajakitem', 'pajakitem.item_id', '=', 'item.id')
+        ->leftJoin('pajak', 'pajak.id', '=', 'pajakitem.pajak_id')
+        ->where('item.id', $item->id)
+        ->groupBy('item.id')
+        ->first();
+
+        $returnItem->pajak = json_decode($returnItem->pajak);
+
+        return new GetResource($returnItem);
     }
 
     /**
@@ -63,8 +81,17 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        $item->load('pajak');
-        return new GetResource($item);
+        $returnItem = Item::select('item.*',
+            Item::raw('CONCAT(\'[\', GROUP_CONCAT(JSON_OBJECT("id", pajak.id, "nama", pajak.nama, "rate", pajak.rate)),\']\') AS pajak'))
+        ->leftJoin('pajakitem', 'pajakitem.item_id', '=', 'item.id')
+        ->leftJoin('pajak', 'pajak.id', '=', 'pajakitem.pajak_id')
+        ->where('item.id', $item->id)
+        ->groupBy('item.id')
+        ->first();
+
+        $returnItem->pajak = json_decode($returnItem->pajak);
+
+        return new GetResource($returnItem);
     }
 
     /**
@@ -90,9 +117,18 @@ class ItemController extends Controller
         $item->update([ 'nama' => $request->nama ]);
         $item->pajak()->detach();
         $item->pajak()->attach($request->pajak_id);
-        $item->load('pajak');
 
-        return new GetResource($item);
+        $returnItem = Item::select('item.*',
+            Item::raw('CONCAT(\'[\', GROUP_CONCAT(JSON_OBJECT("id", pajak.id, "nama", pajak.nama, "rate", pajak.rate)),\']\') AS pajak'))
+        ->leftJoin('pajakitem', 'pajakitem.item_id', '=', 'item.id')
+        ->leftJoin('pajak', 'pajak.id', '=', 'pajakitem.pajak_id')
+        ->where('item.id', $item->id)
+        ->groupBy('item.id')
+        ->first();
+
+        $returnItem->pajak = json_decode($returnItem->pajak);
+
+        return new GetResource($returnItem);
     }
 
     /**
